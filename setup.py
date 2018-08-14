@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
+import io
+
 from setuptools import setup
 
 
 def long_description():
     """Compose a long description for PyPI."""
-    long_description = None
+    long_description = ''
     try:
-        long_description = read_file('README.rst').decode('utf-8')
-        long_description += '\n' + read_file('CHANGES.rst').decode('utf-8')
+        with io.open('README.rst', 'rt', encoding='utf8') as f:
+            long_description += f.read()
+        with io.open('CHANGES.rst', 'rt', encoding='utf8') as f:
+            long_description += f.read()
     except (IOError, UnicodeDecodeError):
         pass
     return long_description
